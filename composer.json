@@ -10,7 +10,6 @@
     "require-dev": {
         "sentry/sentry": "^1.10@dev",
         "vlucas/phpdotenv": "^2.5@dev",
-        "filp/whoops": "^2.2@dev",
         "phpunit/phpunit": "^7.3@dev"
     },
     "license": "GNU GPLv3",
