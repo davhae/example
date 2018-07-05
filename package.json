@@ -1,0 +1,25 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "this is aaaannn .. example",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^4.15.1",
+    "vue": "^2.5.16",
+    "webpack-cli": "^3.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davhae/example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davhae/example/issues"
+  },
+  "homepage": "https://github.com/davhae/example#readme"
+}
