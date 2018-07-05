@@ -12,6 +12,11 @@
         "vlucas/phpdotenv": "^2.5@dev",
         "phpunit/phpunit": "^7.3@dev"
     },
+    "autoload": {
+        "psr-4": {
+            "davhae\\example\\": "src/"
+        }
+    },
     "license": "GNU GPLv3",
     "authors": [
         {
