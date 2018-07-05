@@ -5,7 +5,7 @@
     "require": {
         "ddeboer/imap": "dev-master",
         "unreal4u/telegram-api": "dev-master",
-        "symfony/routing": "^4.2@dev"
+        "klein/klein": "dev-master"
     },
     "require-dev": {
         "sentry/sentry": "^1.10@dev",
