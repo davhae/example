@@ -30,6 +30,10 @@ class Start
         $error_handler->registerExceptionHandler();
         $error_handler->registerErrorHandler();
         $error_handler->registerShutdownFunction();
+
+        // activate custom routes
+        Router::dispatchRoutes();
+
     }
 
     // sentry test

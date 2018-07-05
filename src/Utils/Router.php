@@ -1,14 +1,22 @@
 <?php
 namespace davhae\example\Utils;
 
-use Symfony\Component\Routing;
 
+/**
+ * Class Router
+ *
+ * 'It should Route'
+ */
 class Router
 {
 
-    public function hey() {
-        echo 'helo';
+    public static function dispatchRoutes()
+    {
+        $klein = new \Klein\Klein();
+        $klein->respond('GET', '/', function () {
+            return 'Hello World!';
+        });
+
+        $klein->dispatch();
     }
-
-
 }
