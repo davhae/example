@@ -1,16 +1,22 @@
 {
   "name": "example",
   "version": "1.0.0",
-  "description": "this is aaaannn .. example",
+  "description": "use NPM 6.1.0 and Node 8.11.1",
   "main": "index.js",
   "dependencies": {
     "webpack": "^4.15.1",
     "vue": "^2.5.16",
     "webpack-cli": "^3.0.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "vue-loader": "^15.2.4",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16"
+  },
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
