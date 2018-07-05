@@ -1,0 +1,24 @@
+{
+    "name": "davhae/example",
+    "description": "this is aaaannn .. example",
+    "type": "library",
+    "require": {
+        "ddeboer/imap": "dev-master",
+        "unreal4u/telegram-api": "dev-master",
+        "symfony/routing": "^4.2@dev"
+    },
+    "require-dev": {
+        "sentry/sentry": "^1.10@dev",
+        "vlucas/phpdotenv": "^2.5@dev",
+        "filp/whoops": "^2.2@dev",
+        "phpunit/phpunit": "^7.3@dev"
+    },
+    "license": "GNU GPLv3",
+    "authors": [
+        {
+            "name": "davhae",
+            "email": "d.haemmerle@protonmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
