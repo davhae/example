@@ -1,6 +1,7 @@
 <?php
 namespace davhae\example\Utils;
 
+use Klein\Klein;
 
 /**
  * Class Router
@@ -9,14 +10,31 @@ namespace davhae\example\Utils;
  */
 class Router
 {
+    var $klein;
 
-    public static function dispatchRoutes()
+    public function __construct()
     {
-        $klein = new \Klein\Klein();
-        $klein->respond('GET', '/', function () {
-            return 'Hello World!';
+        $this->klein = new Klein();
+    }
+
+    /**
+     * get the routes accessible and connect them to the controller
+     */
+    public function dispatchRoutes()
+    {
+        $controller = new Controller();
+
+        ### WEB ###
+        // This is the main WEB route, others shouldn't be needed
+        $this->klein->respond('GET', '/', function () use ($controller) {
+            return $controller->index();
         });
 
-        $klein->dispatch();
+        ### API ###
+//        $klein->respond('GET', '/[:name]', function ($request) use ($controller) {
+//            return $controller->main($request->name);
+//        });
+
+        $this->klein->dispatch();
     }
 }
