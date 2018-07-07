@@ -30,10 +30,14 @@ class Router
             return $controller->index();
         });
 
-        ### API ###
-//        $klein->respond('GET', '/[:name]', function ($request) use ($controller) {
-//            return $controller->main($request->name);
-//        });
+        ### GRAPHQL ###
+        $this->klein->respond('POST', '/api/v1', function ($request) use ($controller) {
+            return $controller->main($request);
+        });
+
+        $this->klein->respond('POST', '/[:name]', function ($request) use ($controller) {
+            return $controller->main($request);
+        });
 
         $this->klein->dispatch();
     }

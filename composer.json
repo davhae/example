@@ -5,7 +5,8 @@
     "require": {
         "ddeboer/imap": "dev-master",
         "unreal4u/telegram-api": "dev-master",
-        "klein/klein": "dev-master"
+        "klein/klein": "dev-master",
+        "webonyx/graphql-php": "dev-master"
     },
     "require-dev": {
         "sentry/sentry": "^1.10@dev",

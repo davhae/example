@@ -2,7 +2,12 @@
 
 namespace davhae\example\Utils;
 
-
+/**
+ * Class Layout
+ * @package davhae\example\Utils
+ *
+ *
+ */
 class Layout
 {
     private const HTML_HEAD_NAME = 'head';
@@ -17,19 +22,26 @@ class Layout
      *
      * concat HTML and add vue component
      */
-    public function getFrontend(...$vueComponent): string
+    public function getFrontend($template, ...$vueComponent): string
     {
         $view = '';
         // DOCTYPE and <head>
-        $view .= $this->getHTMLLayout(self::HTML_HEAD_NAME);
+        $view .= $this->getLayout(self::HTML_HEAD_NAME);
 
+        // check and use another html template
+        if (isset($htmlTemplate)) {
+            $templatePath = $this->getLayoutPath($template);
+            if (file_exists($templatePath)) {
+                $view .= $this->getLayout($template);
+            }
+        }
         // Create html for vue components
         foreach ($vueComponent as $component) {
             $view .= '<div id="' . $component . '"></div>' . PHP_EOL;
         }
 
         // javascript and closing tags
-        $view .= $this->getHTMLLayout(self::HTML_FOOT_NAME);
+        $view .= $this->getLayout(self::HTML_FOOT_NAME);
 
         return $view;
     }
@@ -40,12 +52,28 @@ class Layout
      *
      * combines the layout files
      */
-    public function getHTMLLayout(...$layoutNames): string
+    public function getLayout(...$layoutNames): string
     {
         $layoutContent = '';
-        foreach ($layoutNames as $layoutName){
-            $layoutContent .=  file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../resources/private/templates/' . $layoutName . '.html');
+        foreach ($layoutNames as $layoutName) {
+            $layoutPath = $this->getLayoutPath($layoutName);
+            // only load the file if it's available
+            if (file_exists($layoutPath)){
+                $layoutContent .= file_get_contents($this->getLayoutPath($layoutName));
+            }
         }
         return $layoutContent;
+    }
+
+    /**
+     * @param $layoutName
+     * @return string
+     *
+     * gets the full path of a layout
+     */
+    public function getLayoutPath($layoutName)
+    {
+        $layoutPath = $_SERVER['DOCUMENT_ROOT'] . '/../resources/private/templates/' . $layoutName . '.html';
+        return $layoutPath;
     }
 }

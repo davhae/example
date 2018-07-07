@@ -1,7 +1,10 @@
 <?php
-
 namespace davhae\example\Utils;
 
+use GraphQL\GraphQL;
+use GraphQL\Type\Schema;
+use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\Type;
 
 class Controller
 {
@@ -19,7 +22,7 @@ class Controller
      */
     public function index(): string
     {
-        $view = $this->layout->getFrontend('app');
+        $view = $this->layout->getFrontend(null,'app');
         return $view;
     }
 
@@ -29,9 +32,49 @@ class Controller
      *
      * Handles API calls
      */
-    public function main($vueComponent)
+    public function main($request)
     {
-        $view = $this->layout->getFrontend($vueComponent);
-        return $view;
+
+        ### query type
+        $queryType = new ObjectType([
+            'name' => 'Query',
+            'fields' => [
+                'echo' => [
+                    'type' => Type::string(),
+                    'args' => [
+                        'message' => Type::nonNull(Type::string()),
+                    ],
+                    'resolve' => function ($root, $args) {
+                        return $root['prefix'] . $args['message'];
+                    }
+                ],
+            ],
+        ]);
+
+        ## Endpoint
+        $schema = new Schema([
+            'query' => $queryType
+        ]);
+
+        $rawInput = file_get_contents('php://input');
+        $input = json_decode($rawInput, true);
+        $query = $input['query'];
+        $variableValues = isset($input['variables']) ? $input['variables'] : null;
+
+        try {
+            $rootValue = ['prefix' => 'You said: '];
+            $result = GraphQL::executeQuery($schema, $query, $rootValue, null, $variableValues);
+            $output = $result->toArray();
+        } catch (\Exception $e) {
+            $output = [
+                'errors' => [
+                    [
+                        'message' => $e->getMessage()
+                    ]
+                ]
+            ];
+        }
+        header('Content-Type: application/json');
+        return json_encode($output);
     }
 }
