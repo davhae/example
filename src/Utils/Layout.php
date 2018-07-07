@@ -6,7 +6,7 @@ namespace davhae\example\Utils;
  * Class Layout
  * @package davhae\example\Utils
  *
- *
+ * Handles the output of templates, vue components and php templates(TODO:maybe)
  */
 class Layout
 {
