@@ -32,7 +32,8 @@ class Start
         $error_handler->registerShutdownFunction();
 
         // activate custom routes
-        Router::dispatchRoutes();
+        $router = new Router();
+        $router->dispatchRoutes();
 
     }
 
