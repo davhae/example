@@ -12,8 +12,6 @@ class Layout
 {
     private const HTML_HEAD_NAME = 'head';
     private const HTML_FOOT_NAME = 'foot';
-    private const VUE_HEADER = 'header';
-    private const VUE_FOOTER = 'footer';
 
 
     /**
@@ -29,8 +27,9 @@ class Layout
         $view .= $this->getLayout(self::HTML_HEAD_NAME);
 
         // check and use another html template
-        if (isset($htmlTemplate)) {
+        if (isset($template)) {
             $templatePath = $this->getLayoutPath($template);
+
             if (file_exists($templatePath)) {
                 $view .= $this->getLayout($template);
             }
